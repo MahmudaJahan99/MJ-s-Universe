@@ -1,0 +1,22 @@
+:root {
+    /* Colors */
+    --color-background: #05050a;
+    --color-surface: #10101a;
+    --color-text-primary: #f5f3ff;
+    --color-text-secondary: #aaa6bd;
+
+    /* Accent colors */
+    --color-accent-primary: #a78bfa;
+    --color-accent-secondary: #67e8f9;
+
+    /* Typography */
+    --font-primary: sans-serif;
+
+    /* Layout */
+    --container-width: 1200px;
+    --page-gutter: 24px;
+
+    /* Transitions */
+    --transition-fast: 200ms ease;
+    --transition-medium: 400ms ease;
+}

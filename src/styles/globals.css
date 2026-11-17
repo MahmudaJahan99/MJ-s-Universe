@@ -1,0 +1,21 @@
+body {
+    min-width: 320px;
+    min-height: 100vh;
+
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+
+    font-family: var(--font-primary);
+    line-height: 1.5;
+
+    overflow-x: hidden;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+::selection {
+    background-color: var(--color-accent-primary);
+    color: var(--color-background);
+}
