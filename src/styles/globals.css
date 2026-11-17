@@ -5,10 +5,32 @@ body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
 
-    font-family: var(--font-primary);
-    line-height: 1.5;
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.7;
 
     overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.1;
+}
+
+code,
+pre,
+.font-mono {
+    font-family: var(--font-mono);
 }
 
 #root {
@@ -16,6 +38,6 @@ body {
 }
 
 ::selection {
-    background-color: var(--color-accent-primary);
-    color: var(--color-background);
+    background-color: var(--color-lavender);
+    color: var(--color-void);
 }
