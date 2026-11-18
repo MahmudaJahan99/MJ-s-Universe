@@ -1,0 +1,44 @@
+.app {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--color-background);
+}
+
+.main {
+    width: 100%;
+}
+
+.placeholder {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-inline: var(--page-gutter);
+    text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-champagne);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.2em;
+}
+
+.placeholder h1 {
+    max-width: 850px;
+    color: var(--color-text-primary);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    letter-spacing: -0.035em;
+}
+
+.description {
+    max-width: 520px;
+    margin-top: var(--space-5);
+
+    color: var(--color-text-secondary);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
