@@ -5,6 +5,9 @@
     align-items: center;
     gap: var(--space-3);
 
+    position: relative;
+    z-index: var(--z-content);
+
     padding: var(--space-6) var(--page-gutter);
 
     border-top: var(--border-width) solid var(--color-border);

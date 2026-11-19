@@ -1,26 +1,46 @@
+import { useState } from "react";
+
+import IntroSequence from "../features/hero/components/IntroSequence";
 import Footer from "../components/layout/Footer/Footer";
+
 import styles from "./App.module.css";
 
 function App() {
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+
   return (
     <div className={styles.app}>
-      {/* Site navigation will go here */}
+      <IntroSequence onComplete={() => setIsHeroVisible(true)} />
 
-      <main className={styles.main}>
-        {/* Portfolio sections will go here */}
+      {isHeroVisible && (
+        <>
+          <main className={styles.main}>
+            <section id="home" className={styles.hero} aria-label="Home">
+              <div className={styles.heroContent}>
+                <p className={styles.eyebrow}>PERSONAL UNIVERSE</p>
 
-        <section id="home" className={styles.placeholder} aria-label="Home">
-          <p className={styles.eyebrow}>PERSONAL UNIVERSE</p>
+                <h1>Welcome to my universe.</h1>
 
-          <h1>Something extraordinary is taking shape.</h1>
+                <p className={styles.description}>
+                  A universe of ideas, creativity, and code.
+                </p>
 
-          <p className={styles.description}>
-            A universe of ideas, creativity, and code.
-          </p>
-        </section>
-      </main>
+                <a href="#projects" className={styles.cta}>
+                  Explore my work
+                  <span aria-hidden="true"> ↗</span>
+                </a>
+              </div>
 
-      <Footer />
+              <div className={styles.scrollIndicator}>
+                <span>SCROLL TO EXPLORE</span>
+                <span aria-hidden="true">↓</span>
+              </div>
+            </section>
+          </main>
+
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

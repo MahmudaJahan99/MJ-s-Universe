@@ -1,26 +1,38 @@
 .app {
+    position: relative;
     min-height: 100vh;
-    width: 100%;
     background-color: var(--color-background);
 }
 
 .main {
-    width: 100%;
+    position: relative;
+    z-index: var(--z-content);
 }
 
-.placeholder {
-    min-height: 100vh;
+.hero {
+    position: relative;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    padding-inline: var(--page-gutter);
+    min-height: 100vh;
+    min-height: 100svh;
+
+    padding: var(--page-gutter);
+
+    overflow: hidden;
     text-align: center;
 }
 
+.heroContent {
+    width: 100%;
+    max-width: 1000px;
+}
+
 .eyebrow {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
 
     color: var(--color-champagne);
     font-family: var(--font-mono);
@@ -28,17 +40,91 @@
     letter-spacing: 0.2em;
 }
 
-.placeholder h1 {
-    max-width: 850px;
-    color: var(--color-text-primary);
-    font-size: clamp(2.5rem, 7vw, 5.5rem);
-    letter-spacing: -0.035em;
+.hero h1 {
+    color: var(--color-starlight);
+
+    font-size: clamp(3rem, 9vw, 8rem);
+    letter-spacing: -0.045em;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--color-lavender);
+    font-style: italic;
 }
 
 .description {
-    max-width: 520px;
-    margin-top: var(--space-5);
+    max-width: 550px;
+    margin: var(--space-5) auto 0;
 
     color: var(--color-text-secondary);
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    margin-top: var(--space-7);
+    padding: var(--space-3) var(--space-6);
+
+    border: 1px solid var(--color-champagne);
+    border-radius: var(--radius-full);
+
+    background-color: var(--color-champagne);
+    color: var(--color-void);
+
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+
+    transition:
+        transform var(--duration-fast) var(--ease-standard),
+        background-color var(--duration-fast) var(--ease-standard);
+}
+
+.cta:hover {
+    transform: translateY(-3px);
+    background-color: var(--color-starlight);
+}
+
+.cta:focus-visible {
+    outline: 2px solid var(--color-starlight);
+    outline-offset: 5px;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: var(--space-6);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+}
+
+@media (max-width: 600px) {
+    .eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.75rem, 12vw, 5rem);
+    }
+
+    .description {
+        max-width: 340px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta {
+        transition: none;
+    }
 }
