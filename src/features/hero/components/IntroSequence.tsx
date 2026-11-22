@@ -117,12 +117,12 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
   };
 
   const handleIntroError = () => {
-  console.warn("Intro video failed to load.");
+    console.warn("Intro video failed to load.");
 
-  if (hasStarted) {
-    void transitionToLoop();
-  }
-};
+    if (hasStarted) {
+      void transitionToLoop();
+    }
+  };
 
   useEffect(() => {
     const cinematic = document.querySelector(`.${styles.cinematic}`);
@@ -195,18 +195,23 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
       {/* Entrance screen */}
       {!hasStarted && (
         <div className={styles.entryScreen}>
-          <p className={styles.eyebrow}>A NEW WORLD AWAITS</p>
+          <p className={styles.eyebrow}>Every Universe Begins With An Idea</p>
 
-          <h1>Enter the universe.</h1>
+          <p className={styles.subtitle}>
+            Somewhere between creativity, curiosity, chaos, and code, my
+            universe began to take shape. A world where my ideas come alive,
+            where imagination meets creation, and where you get to explore a
+            little piece of my mind.
+          </p>
 
-          <p className={styles.subtitle}>An immersive experience with sound.</p>
+          <p className={styles.question}>Curious enough to step in?</p>
 
           <button
-            className={styles.enterButton}
             type="button"
             onClick={startExperience}
+            className={styles.enterButton}
           >
-            Enter experience <span aria-hidden="true">↗</span>
+            LET THERE BE LIGHT <span aria-hidden="true">↗</span>
           </button>
         </div>
       )}
