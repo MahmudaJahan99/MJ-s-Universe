@@ -4,6 +4,7 @@ import IntroSequence from "../features/hero/components/IntroSequence";
 import Footer from "../components/layout/Footer/Footer";
 
 import styles from "./App.module.css";
+import HeroSection from "../features/hero/components/HeroSection/HeroSection";
 
 function App() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -15,27 +16,7 @@ function App() {
       {isHeroVisible && (
         <>
           <main className={styles.main}>
-            <section id="home" className={styles.hero} aria-label="Home">
-              <div className={styles.heroContent}>
-                <p className={styles.eyebrow}>PERSONAL UNIVERSE</p>
-
-                <h1>Welcome to my universe.</h1>
-
-                <p className={styles.description}>
-                  A universe of ideas, creativity, and code.
-                </p>
-
-                <a href="#projects" className={styles.cta}>
-                  Explore my work
-                  <span aria-hidden="true"> ↗</span>
-                </a>
-              </div>
-
-              <div className={styles.scrollIndicator}>
-                <span>SCROLL TO EXPLORE</span>
-                <span aria-hidden="true">↓</span>
-              </div>
-            </section>
+            <HeroSection />
           </main>
 
           <Footer />
