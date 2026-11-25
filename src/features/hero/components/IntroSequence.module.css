@@ -13,6 +13,8 @@
     background-color: var(--color-void);
 }
 
+/* Video */
+
 .video {
     position: absolute;
     inset: 0;
@@ -75,51 +77,123 @@
 
     padding: var(--page-gutter);
     text-align: center;
+
+    isolation: isolate;
+}
+
+.entryScreen::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: min(80vw, 750px);
+    aspect-ratio: 1;
+
+    background: radial-gradient(circle,
+            rgba(109, 92, 115, 0.17) 0%,
+            rgba(23, 35, 33, 0.13) 38%,
+            transparent 70%);
+
+    filter: blur(35px);
+    pointer-events: none;
 }
 
 .eyebrow {
     margin-bottom: var(--space-4);
+
     color: var(--color-champagne);
     font-family: var(--font-mono);
-    font-size: clamp(1.25rem, 2vw, 3rem);
-    letter-spacing: 0.2em;
+    font-size: clamp(0.58rem, 2vw, 1rem);
+    font-weight: 500;
+
+    letter-spacing: 0.24em;
+    line-height: 1.6;
+    text-transform: uppercase;
 }
 
 .subtitle {
-    margin-top: var(--space-4);
+    width: min(100%, 560px);
+    margin: 0;
+
     color: var(--color-starlight);
-    font-size: var(--font-size-lg);
+    font-family: var(--font-body);
+    font-size: clamp(0.875rem, 1.15vw, 1.05rem);
+    font-weight: 400;
+
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+
+    text-wrap: pretty;
+    opacity: 0.85;
 }
 
 .question {
     margin-block: var(--space-4);
+
     color: var(--color-champagne);
-    font-size: clamp(1.375rem, 4vw, 3rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 400;
     font-style: italic;
 }
 
+/* CTA button */
 .enterButton {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
     margin-block: var(--space-7);
     padding: var(--space-3) var(--space-6);
 
     border: 1px solid var(--color-champagne);
     border-radius: var(--radius-full);
 
-    background-color: var(--color-champagne);
-    color: var(--color-void);
+    background: var(--color-void);
+    color: var(--color-starlight);
 
     font-family: var(--font-mono);
     font-size: var(--font-size-xs);
+    font-weight: 500;
+
     letter-spacing: 0.04em;
 
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     transition:
+        color var(--duration-fast) var(--ease-standard),
+        background-color var(--duration-fast) var(--ease-standard),
+        border-color var(--duration-fast) var(--ease-standard),
         transform var(--duration-fast) var(--ease-standard),
-        background-color var(--duration-fast) var(--ease-standard);
+        box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.enterButton span {
+    color: var(--color-champagne);
+    font-size: 1rem;
+
+    transition: transform var(--duration-fast) var(--ease-standard);
 }
 
 .enterButton:hover {
     transform: translateY(-1.2px);
-    background-color: var(--color-champagne-dark);
+
+    background: rgba(214, 185, 135, 0.12);
+    border-color: var(--color-champagne);
+
+    box-shadow: 0 8px 35px rgba(214, 185, 135, 0.1);
+}
+
+.enterButton:hover span {
+    transform: translate(3px, -3px);
+}
+
+.enterButton:active {
+    transform: translateY(-1px);
 }
 
 .enterButton:focus-visible,
@@ -130,9 +204,13 @@
 
 .skipButton {
     position: absolute;
-    right: var(--page-gutter);
-    bottom: var(--space-6);
+    top: clamp(1.5rem, 4vw, 3rem);
+    right: clamp(1.5rem, 4vw, 3rem);
     z-index: 4;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
 
     padding: var(--space-2) var(--space-4);
 
@@ -144,18 +222,97 @@
 
     font-family: var(--font-mono);
     font-size: var(--font-size-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 
-    backdrop-filter: blur(10px);
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     transition:
         background-color var(--duration-fast) var(--ease-standard),
-        border-color var(--duration-fast) var(--ease-standard);
+        border-color var(--duration-fast) var(--ease-standard),
+        color var(--duration-fast) var(--ease-standard);
 }
 
 .skipButton:hover {
     background-color: var(--color-graphite);
-    border-color: var(--color-lavender);
+    border-color: var(--color-champagne);
+    color: var(--color-champagne);
 }
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .overlay {
+        background:
+            radial-gradient(ellipse at center,
+                rgba(8, 11, 14, 0.12) 0%,
+                rgba(8, 11, 14, 0.45) 100%),
+            linear-gradient(180deg,
+                rgba(8, 11, 14, 0.4),
+                rgba(8, 11, 14, 0.15) 40%,
+                rgba(8, 11, 14, 0.65));
+    }
+
+    .entryScreen {
+        padding-inline: 1.75rem;
+    }
+
+    .subtitle {
+        max-width: 450px;
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+
+    .skipButton {
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .eyebrow {
+        max-width: 280px;
+        font-size: 0.58rem;
+        letter-spacing: 0.17em;
+    }
+
+    .subtitle {
+        max-width: 340px;
+        font-size: 0.84rem;
+        line-height: 1.8;
+    }
+
+    .question {
+        font-size: 1.35rem;
+    }
+
+    .enterButton {
+        padding: 0.9rem 1.4rem;
+        font-size: 0.62rem;
+    }
+}
+
+@media (max-height: 650px) {
+    .entryScreen {
+        padding-block: 5rem 2rem;
+    }
+
+    .eyebrow {
+        margin-bottom: 1rem;
+    }
+
+    .question {
+        margin-top: 1.25rem;
+    }
+
+    .enterButton {
+        margin-top: 1.25rem;
+    }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
     .video {
