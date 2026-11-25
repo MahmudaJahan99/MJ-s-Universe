@@ -17,14 +17,16 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
   const [hasStarted, setHasStarted] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
+  // Start the intro video when the user clicks the button.
   const startExperience = async () => {
     const introVideo = introVideoRef.current;
 
     if (!introVideo || hasStarted) return;
 
     try {
-      introVideo.muted = false;
+      introVideo.muted = isMuted;
       introVideo.volume = 1;
 
       await introVideo.play();
@@ -49,15 +51,13 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
         introVideo.pause();
       }
 
-      loopVideo.muted = false;
+      loopVideo.muted = isMuted;
       loopVideo.volume = 1;
 
       loopVideo.currentTime = LOOP_START_TIME;
 
       await loopVideo.play();
     } catch {
-      loopVideo.muted = true;
-
       try {
         await loopVideo.play();
       } catch (error) {
@@ -81,6 +81,8 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
       console.error("Unable to restart looping video:", error);
     }
   };
+
+  // Mark the intro sequence as completed when the transition to the loop video ends.
   const handleTransitionEnd = (
     event: React.TransitionEvent<HTMLVideoElement>,
   ) => {
@@ -96,10 +98,17 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
     onComplete();
   };
 
+  // Handle the skip button click by transitioning to the loop video immediately.
   const handleSkip = () => {
     void transitionToLoop();
   };
 
+  // Toggle audio for both videos.
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev);
+  };
+
+  // Mute the loop video when it reaches the end to prevent audio from playing after the intro sequence.
   const handleLoopTimeUpdate = () => {
     const loopVideo = loopVideoRef.current;
 
@@ -116,6 +125,7 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
     }
   };
 
+  // Handle the error event for the intro video by logging a warning and transitioning to the loop video if the intro has already started.
   const handleIntroError = () => {
     console.warn("Intro video failed to load.");
 
@@ -124,6 +134,18 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
     }
   };
 
+  // Mute or unmute the intro and loop videos based on the isMuted state.
+  useEffect(() => {
+    if (introVideoRef.current) {
+      introVideoRef.current.muted = isMuted;
+    }
+
+    if (loopVideoRef.current) {
+      loopVideoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  // Use an IntersectionObserver to play or pause the loop video based on its visibility in the viewport.
   useEffect(() => {
     const cinematic = document.querySelector(`.${styles.cinematic}`);
 
@@ -216,15 +238,27 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
         </div>
       )}
 
-      {/* Skip control */}
+      {/* Top-right controls */}
       {hasStarted && !isTransitioning && (
-        <button
-          className={styles.skipButton}
-          type="button"
-          onClick={handleSkip}
-        >
-          Skip intro
-        </button>
+        <div className={styles.controls}>
+          <button
+            className={styles.skipButton}
+            type="button"
+            onClick={handleSkip}
+          >
+            Skip
+          </button>
+
+          <button
+            type="button"
+            className={styles.muteButton}
+            onClick={toggleMute}
+            aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+            aria-pressed={isMuted}
+          >
+            {isMuted ? "UNMUTE" : "MUTE"}
+          </button>
+        </div>
       )}
     </section>
   );

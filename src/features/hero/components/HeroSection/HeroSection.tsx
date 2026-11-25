@@ -14,29 +14,34 @@ function HeroSection() {
           isNameVisible ? styles.visible : styles.hidden
         }`}
       >
-        <p className={styles.eyebrow}>PERSONAL UNIVERSE</p>
-        {/* 
-        <h1>
-          Welcome to my <span>personal</span> universe.
-        </h1> */}
+        {/* Eyebrow */}
+        <p className={styles.eyebrow}>
+          A Mind Full Of Possibilities & Potentials
+        </p>
+
+        {/* Title */}
         <StardustTitle text="Mahmuda Jahan" isVisible={isNameVisible} />
 
+        {/* Role */}
         <p
           className={`${styles.role} ${
             isRoleVisible ? styles.visible : styles.hidden
           }`}
         >
-          FRONTEND DEVELOPER
+          Frontend Developer · Creative Thinker · Eternal Explorer
         </p>
 
+        {/* Description */}
         <p
           className={`${styles.description} ${
             isIntroVisible ? styles.visible : styles.hidden
           }`}
         >
-          A universe of ideas, creativity, and code.
+          I turn ideas into interfaces, pixels into experiences, and curiosity
+          into code.
         </p>
 
+        {/* CTA Button */}
         <a
           href="#projects"
           className={`${styles.cta} ${
@@ -44,13 +49,8 @@ function HeroSection() {
           }`}
         >
           Explore my work
-          <span aria-hidden="true"> ↗</span>
+          <span aria-hidden="true"> ↓</span>
         </a>
-      </div>
-
-      <div className={styles.scrollIndicator}>
-        <span>SCROLL TO EXPLORE</span>
-        <span aria-hidden="true">↓</span>
       </div>
     </section>
   );

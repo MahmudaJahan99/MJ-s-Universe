@@ -38,11 +38,11 @@ function useHeroReveal() {
       currentStage,
     ),
 
-    isNavigationVisible: ["navigation", "cta", "complete"].includes(
+    isNavigationVisible: ["navigation", "complete"].includes(
       currentStage,
     ),
 
-    isCtaVisible: ["cta", "complete"].includes(currentStage),
+    isCtaVisible: ["cta", "navigation", "complete"].includes(currentStage),
 
     isComplete: currentStage === "complete",
   };

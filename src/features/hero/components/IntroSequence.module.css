@@ -14,7 +14,6 @@
 }
 
 /* Video */
-
 .video {
     position: absolute;
     inset: 0;
@@ -45,6 +44,7 @@
     opacity: 0;
 }
 
+/* Overlay */
 .overlay {
     position: absolute;
     inset: 0;
@@ -143,7 +143,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: var(--space-2);
 
     margin-block: var(--space-7);
     padding: var(--space-3) var(--space-6);
@@ -168,7 +168,6 @@
         color var(--duration-fast) var(--ease-standard),
         background-color var(--duration-fast) var(--ease-standard),
         border-color var(--duration-fast) var(--ease-standard),
-        transform var(--duration-fast) var(--ease-standard),
         box-shadow var(--duration-fast) var(--ease-standard);
 }
 
@@ -180,8 +179,6 @@
 }
 
 .enterButton:hover {
-    transform: translateY(-1.2px);
-
     background: rgba(214, 185, 135, 0.12);
     border-color: var(--color-champagne);
 
@@ -197,20 +194,39 @@
 }
 
 .enterButton:focus-visible,
-.skipButton:focus-visible {
+.skipButton:focus-visible,
+.muteButton:focus-visible {
     outline: 2px solid var(--color-champagne);
     outline-offset: 5px;
 }
 
-.skipButton {
+
+/* Top-right controls */
+.controls {
     position: absolute;
-    top: clamp(1.5rem, 4vw, 3rem);
-    right: clamp(1.5rem, 4vw, 3rem);
+    top: clamp(1rem, 4vw, 3rem);
+    right: clamp(1rem, 4vw, 3rem);
     z-index: 4;
 
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.7rem;
+    justify-content: flex-end;
+    gap: clamp(0.4rem, 1vw, 0.75rem);
+
+    width: max-content;
+    max-width: calc(100% - 2rem);
+}
+
+.skipButton,
+.muteButton {
+    position: static;
+
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 
     padding: var(--space-2) var(--space-4);
 
@@ -222,9 +238,10 @@
 
     font-family: var(--font-mono);
     font-size: var(--font-size-xs);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 
+    white-space: nowrap;
     cursor: pointer;
 
     backdrop-filter: blur(12px);
@@ -236,14 +253,21 @@
         color var(--duration-fast) var(--ease-standard);
 }
 
+
 .skipButton:hover {
     background-color: var(--color-graphite);
     border-color: var(--color-champagne);
     color: var(--color-champagne);
 }
 
-/* Responsive */
+.muteButton:hover {
+    background: rgba(214, 185, 135, 0.12);
+    border-color: var(--color-champagne);
+    color: var(--color-champagne);
+}
 
+
+/* Responsive */
 @media (max-width: 768px) {
     .overlay {
         background:
@@ -266,9 +290,16 @@
         line-height: 1.8;
     }
 
-    .skipButton {
+    .controls {
         top: 1.25rem;
         right: 1.25rem;
+        gap: 0.5rem;
+    }
+
+    .skipButton,
+    .muteButton {
+        padding: 0.55rem 0.8rem;
+        font-size: 0.65rem;
     }
 }
 
@@ -293,7 +324,35 @@
         padding: 0.9rem 1.4rem;
         font-size: 0.62rem;
     }
+
+    .controls {
+        top: 1rem;
+        right: 1rem;
+        gap: 0.4rem;
+    }
+
+    .skipButton,
+    .muteButton {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.05em;
+    }
 }
+
+@media (max-width: 350px) {
+    .controls {
+        top: 0.75rem;
+        right: 0.75rem;
+        gap: 0.35rem;
+    }
+
+    .skipButton,
+    .muteButton {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.52rem;
+    }
+}
+
 
 @media (max-height: 650px) {
     .entryScreen {
