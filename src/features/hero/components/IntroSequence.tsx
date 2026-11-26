@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./IntroSequence.module.css";
+import CosmicButton from "../../../components/layout/ui/CTAButton/CosmicButton";
 
 type IntroSequenceProps = {
   onComplete: () => void;
@@ -228,13 +229,9 @@ function IntroSequence({ onComplete }: IntroSequenceProps) {
 
           <p className={styles.question}>Curious enough to step in?</p>
 
-          <button
-            type="button"
-            onClick={startExperience}
-            className={styles.enterButton}
-          >
-            LET THERE BE LIGHT <span aria-hidden="true">↗</span>
-          </button>
+          <CosmicButton showArrow={false} onClick={startExperience}>
+            LET THERE BE LIGHT
+          </CosmicButton>
         </div>
       )}
 

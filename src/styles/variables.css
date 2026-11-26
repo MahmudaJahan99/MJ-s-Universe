@@ -90,6 +90,7 @@
 
     --duration-fast: 200ms;
     --duration-medium: 400ms;
+    --duration-medium-alt: 600ms;
     --duration-slow: 800ms;
 
     --ease-standard: cubic-bezier(0.2, 0.65, 0.3, 1);

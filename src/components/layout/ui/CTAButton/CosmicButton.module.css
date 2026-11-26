@@ -1,0 +1,290 @@
+.button {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    margin-block: var(--space-7);
+    padding: var(--space-3) var(--space-6);
+
+    border: 1px solid var(--color-champagne);
+    border-radius: var(--radius-full);
+
+    background: transparent;
+    color: var(--color-champagne);
+
+    box-shadow:
+        0 0 8px rgba(214, 185, 135, 0.15),
+        0 0 18px rgba(214, 185, 135, 0.08);
+
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        background var(--duration-medium-alt) var(--ease-standard),
+        border-color var(--duration-medium-alt) var(--ease-standard),
+        box-shadow var(--duration-medium-alt) var(--ease-standard),
+        color var(--duration-medium-alt) var(--ease-standard);
+}
+
+.button:hover {
+    background: var(--color-champagne);
+    border-color: var(--color-champagne);
+    color: var(--color-void);
+
+    box-shadow:
+        0 0 12px rgba(214, 185, 135, 0.45),
+        0 0 28px rgba(214, 185, 135, 0.3),
+        0 0 50px rgba(214, 185, 135, 0.12);
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 6px;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* button content */
+.content {
+    position: relative;
+    z-index: 2;
+
+    transition:
+        color var(--duration-medium) var(--ease-standard),
+        letter-spacing var(--duration-medium) var(--ease-standard);
+}
+
+.button:hover .content {
+    color: var(--color-void);
+    letter-spacing: 0.13em;
+}
+
+/* Arrow */
+.arrow {
+    transition: transform var(--duration-medium) var(--ease-standard);
+}
+
+.up:hover .arrow {
+    transform: translate(3px, -3px);
+}
+
+.down:hover .arrow {
+    transform: translateY(4px);
+    animation: arrow-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+}
+
+/* VARIANTS */
+.secondary {
+    background: transparent;
+    border-color: var(--color-champagne);
+    color: var(--color-champagne);
+}
+
+.secondary:hover {
+    border-color: var(--color-champagne);
+}
+
+/* Celestial Particles */
+.starField {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+
+    left: var(--start-x);
+    top: var(--start-y);
+
+    width: var(--size);
+    height: var(--size);
+
+    background: var(--color-champagne);
+
+    clip-path: polygon(50% 0%,
+            62% 38%,
+            100% 50%,
+            62% 62%,
+            50% 100%,
+            38% 62%,
+            0% 50%,
+            38% 38%);
+
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Particle colors */
+.star:nth-child(3n) {
+    background: var(--color-lavender);
+}
+
+.star:nth-child(4n) {
+    background: var(--color-starlight);
+}
+
+.star:nth-child(5n) {
+    filter: drop-shadow(0 0 5px rgba(214, 185, 135, 0.8));
+}
+
+.button:hover .starField .star {
+    animation: star-escape var(--duration) cubic-bezier(0.4, 0, 1, 1) var(--delay) infinite;
+}
+
+/* Particle positions */
+.star:nth-child(1) {
+    top: 12%;
+    left: 8%;
+}
+
+.star:nth-child(2) {
+    top: 78%;
+    left: 15%;
+}
+
+.star:nth-child(3) {
+    top: 25%;
+    left: 27%;
+}
+
+.star:nth-child(4) {
+    top: 90%;
+    left: 35%;
+}
+
+.star:nth-child(5) {
+    top: 5%;
+    left: 48%;
+}
+
+.star:nth-child(6) {
+    top: 85%;
+    left: 58%;
+}
+
+.star:nth-child(7) {
+    top: 15%;
+    left: 72%;
+}
+
+.star:nth-child(8) {
+    top: 75%;
+    left: 85%;
+}
+
+.star:nth-child(9) {
+    top: 30%;
+    left: 94%;
+}
+
+.star:nth-child(10) {
+    top: 50%;
+    left: 2%;
+}
+
+.star:nth-child(11) {
+    top: 45%;
+    left: 98%;
+}
+
+.star:nth-child(12) {
+    top: 0%;
+    left: 65%;
+}
+
+.star:nth-child(13) {
+    top: 100%;
+    left: 25%;
+}
+
+.star:nth-child(14) {
+    top: 10%;
+    left: 88%;
+}
+
+.star:nth-child(15) {
+    top: 95%;
+    left: 75%;
+}
+
+.star:nth-child(16) {
+    top: 35%;
+    left: 40%;
+}
+
+.star:nth-child(17) {
+    top: 65%;
+    left: 5%;
+}
+
+.star:nth-child(18) {
+    top: 55%;
+    left: 90%;
+}
+
+
+/* Particle animation */
+@keyframes star-escape {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--drift-x)),
+                calc(-50% + var(--drift-y))) scale(1) rotate(180deg);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .button:hover .starField .star {
+        animation: none;
+    }
+
+    .star {
+        opacity: 0;
+    }
+}

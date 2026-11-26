@@ -1,3 +1,4 @@
+import CosmicButton from "../../../../components/layout/ui/CTAButton/CosmicButton";
 import useHeroReveal from "../../hooks/useHeroReveal";
 import StardustTitle from "../StardustTitle/StardustTitle";
 
@@ -41,16 +42,19 @@ function HeroSection() {
           into code.
         </p>
 
-        {/* CTA Button */}
-        <a
-          href="#projects"
+        <CosmicButton
           className={`${styles.cta} ${
             isCtaVisible ? styles.visible : styles.hidden
           }`}
+          arrowDirection="down"
+          onClick={() => {
+            document
+              .getElementById("projects")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
         >
           Explore my work
-          <span aria-hidden="true"> ↓</span>
-        </a>
+        </CosmicButton>
       </div>
     </section>
   );
